@@ -1,9 +1,11 @@
 <script lang="js">
-	export let data;
+	import Tweet from '$lib/components/Tweet.svelte';
 
-    console.log(data);
+	export let data;
 </script>
 
-<h1>Welcome to your library project</h1>
-<p>Create your package using @sveltejs/package and preview/showcase your work with SvelteKit</p>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+{#if data.tweet}
+	<Tweet tweet={data.tweet} />
+{:else if data.error}
+	<p>{data.error}</p>
+{/if}
