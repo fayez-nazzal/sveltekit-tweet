@@ -1,0 +1,17 @@
+/*
+    IMPORTANT NOTICE! -
+    This code is originally taken from Vercel's 'react-tweet' package. 
+    It just has a bit of modifications to work on Svelte and suit my coding style.
+
+    Package URL: https://github.com/vercel/react-tweet
+*/
+
+.verified {
+	margin-left: 0.125rem;
+	max-width: 20px;
+	max-height: 20px;
+	height: 1.25em;
+	fill: currentColor;
+	user-select: none;
+	vertical-align: text-bottom;
+}
