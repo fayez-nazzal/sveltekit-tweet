@@ -20,7 +20,8 @@
 			"types": "./dist/index.d.ts",
 			"svelte": "./dist/index.js"
 		},
-		"./server": "./dist/server.js"
+		"./server": "./dist/server.js",
+		"./theme.css": "./dist/theme.css"
 	},
 	"files": [
 		"dist",
