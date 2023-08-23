@@ -3,7 +3,7 @@
 	import type { TwitterComponents } from '../types.js';
 	import TweetMediaVideo from './TweetMediaVideo.svelte';
 	import MediaImg from './MediaImg.svelte';
-	import { getMediaUrl } from '$lib/utils.js';
+	import { getMediaUrl } from '../utils.js';
 
 	export let tweet: TEnrichedTweet | TEnrichedQuotedTweet;
 	export let components: TwitterComponents | undefined;

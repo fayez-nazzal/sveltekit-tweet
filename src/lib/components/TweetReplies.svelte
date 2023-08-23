@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { TEnrichedTweet } from '$lib/types.js';
+	import type { TEnrichedTweet } from '../types.js';
 	import { formatNumber } from '../utils.js';
 
 	export let tweet: TEnrichedTweet;

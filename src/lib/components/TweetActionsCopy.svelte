@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import type { TEnrichedTweet } from '$lib/types.js';
+	import type { TEnrichedTweet } from '../types.js';
 
 	export let tweet: TEnrichedTweet;
 
