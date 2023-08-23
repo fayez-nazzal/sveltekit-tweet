@@ -1,0 +1,58 @@
+<script lang="ts">
+	import type { TEnrichedTweet } from '$lib/types.js';
+	import { formatNumber } from '../utils.js';
+
+	export let tweet: TEnrichedTweet;
+
+	$: replyText =
+		tweet.conversation_count === 0
+			? 'Read more on Twitter'
+			: tweet.conversation_count === 1
+			? `Read ${formatNumber(tweet.conversation_count)} reply`
+			: `Read ${formatNumber(tweet.conversation_count)} replies`;
+</script>
+
+<div class="replies">
+	<a class="link" href={tweet.url} target="_blank" rel="noopener noreferrer">
+		<span class="text">
+			{replyText}
+		</span>
+	</a>
+</div>
+
+<style>
+	.replies {
+		padding: 0.25rem 0;
+	}
+
+	.link {
+		text-decoration: none;
+		color: var(--tweet-color-blue-secondary);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 32px;
+		min-height: 32px;
+		user-select: none;
+		outline-style: none;
+		transition-property: background-color;
+		transition-duration: 0.2s;
+		padding: 0 1rem;
+		border: var(--tweet-border);
+		border-radius: 9999px;
+	}
+
+	.link:hover {
+		background-color: var(--tweet-color-blue-secondary-hover);
+	}
+
+	.text {
+		font-weight: var(--tweet-replies-font-weight);
+		font-size: var(--tweet-replies-font-size);
+		line-height: var(--tweet-replies-line-height);
+		overflow-wrap: break-word;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+	}
+</style>
