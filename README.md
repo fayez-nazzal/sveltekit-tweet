@@ -44,18 +44,18 @@ npm install sveltekit-tweet
 3.  Use the `Tweet` component in your `+page.svelte` file to render the tweet.
 
 ```svelte
-<script lang="ts">
-	import Tweet from '$lib/components/Tweet.svelte';
-	import type { PageData } from './$types';
-
-	export let data: PageData;
-</script>
-
-{#if data.tweet}
-	<Tweet tweet={data.tweet} />
-{:else if data.error}
-	<p>{data.error}</p>
-{/if}
+	<script lang="ts">
+		import Tweet from '$lib/components/Tweet.svelte';
+		import type { PageData } from './$types';
+	
+		export let data: PageData;
+	</script>
+	
+	{#if data.tweet}
+		<Tweet tweet={data.tweet} />
+	{:else if data.error}
+		<p>{data.error}</p>
+	{/if}
 ```
 
 ## TODOs
