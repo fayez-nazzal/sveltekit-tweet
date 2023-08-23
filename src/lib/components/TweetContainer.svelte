@@ -1,6 +1,6 @@
 <script lang="ts">
 	import scn from 'scn';
-	import '$lib/theme.css';
+	import '../theme.css';
 
 	export let className: string = '';
 	let computedClass = scn('react-tweet-theme', 'root', className);
