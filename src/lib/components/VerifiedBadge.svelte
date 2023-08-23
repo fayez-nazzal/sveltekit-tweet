@@ -2,7 +2,6 @@
 	import Verified from './icons/Verified.svelte';
 	import VerifiedBusiness from './icons/VerifiedBusiness.svelte';
 	import VerifiedGovernment from './icons/VerifiedGovernment.svelte';
-	import '$lib/verified.css';
 
 	export let user;
 	export let className = '';

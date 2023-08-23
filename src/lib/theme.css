@@ -101,3 +101,13 @@
 	--tweet-verified-old-color: rgb(130, 154, 171);
 	--tweet-verified-blue-color: #fff;
 }
+
+.verified {
+	margin-left: 0.125rem;
+	max-width: 20px;
+	max-height: 20px;
+	height: 1.25em;
+	fill: currentColor;
+	user-select: none;
+	vertical-align: text-bottom;
+}
