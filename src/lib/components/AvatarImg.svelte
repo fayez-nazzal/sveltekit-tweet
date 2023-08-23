@@ -1,8 +1,9 @@
 <script lang="ts">
-    export let src: string;
-    export let alt: string;
-    export let width: string;
-    export let height: string;
+	export let src: string;
+	export let alt: string;
+	export let width: string;
+	export let height: string;
+	export let style = '';
 </script>
 
-<img src={src} alt={alt} width={width} height={height} />
+<img {src} {alt} {width} {height} {style} />

@@ -17,7 +17,13 @@
 				? 'avatarOverflow avatarSquare'
 				: 'avatarOverflow'}
 		>
-			<Img src={user.profile_image_url_https} alt={user.name} width="48" height="48" />
+			<Img
+				style="margin-top: 0; margin-bottom: 0;"
+				src={user.profile_image_url_https}
+				alt={user.name}
+				width="48"
+				height="48"
+			/>
 		</div>
 		<div class="avatarOverflow">
 			<div class="avatarShadow" />
