@@ -21,8 +21,8 @@
 			"svelte": "./dist/index.js"
 		},
 		"./server": {
-			"import": "./dist/server.js",
-			"types": "./dist/server.d.ts"
+			"types": "./dist/server.d.ts",
+			"import": "./dist/server.js"
 		},
 		"./theme.css": "./dist/theme.css"
 	},
