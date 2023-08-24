@@ -7,7 +7,7 @@
 */
 
 import { TWEET_REGEX } from './constants.server.js';
-import { Tweet } from './index.js';
+import Tweet from './components/Tweet.svelte';
 import type { ITweet } from './types.js';
 
 const SYNDICATION_URL = 'https://cdn.syndication.twimg.com';
