@@ -82,4 +82,6 @@ export const renderTweets = async (content: string) => {
 		// add tweet css to content
 		content = `${content}<style>${css.code}</style>`;
 	}
+
+	return content;
 };
