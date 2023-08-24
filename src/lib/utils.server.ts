@@ -7,6 +7,7 @@
 */
 
 import { TWEET_REGEX } from './constants.server.js';
+import { Tweet } from './index.js';
 import type { ITweet } from './types.js';
 
 const SYNDICATION_URL = 'https://cdn.syndication.twimg.com';
@@ -59,4 +60,26 @@ export const getTweet = async (
 	if (res.status === 404) return;
 
 	throw new Error(`Failed to fetch tweet ${id}: ${data?.errors?.[0]?.message ?? res.statusText}`);
+};
+
+export const renderTweets = async (content: string) => {
+	// find all data-tweet-id fields
+	const tweetIds = content.match(/data-tweet="(\d+)"/g)?.map((s: string) => s.match(/\d+/)?.[0]);
+
+	if (tweetIds && tweetIds.length > 0) {
+		const tweetsPromises = (tweetIds?.filter(Boolean) as string[])
+			.map((id: string) => getTweet(id))
+			.filter(Boolean);
+
+		const tweets = (await Promise.all(tweetsPromises ?? [])) as ITweet[];
+		const renderedTweets = tweets.map((tweet) => (Tweet as any).render({ tweet }));
+
+		const css = renderedTweets[0].css;
+
+		// replace all data-tweet-id fields with rendered tweets
+		content = content.replace(/<div data-tweet="(\d+)">/g, () => renderedTweets.shift().html ?? '');
+
+		// add tweet css to content
+		content = `${content}<style>${css.code}</style>`;
+	}
 };
