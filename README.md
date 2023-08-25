@@ -1,6 +1,6 @@
 # SvelteKit Tweet
 
-[![ sveltekit-tweet Installation](https://nodei.co/npm/sveltekit-tweet.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/YOUR-MODULE-NAME)
+[![ sveltekit-tweet Installation](https://nodei.co/npm/sveltekit-tweet.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/sveltekit-tweet)
 
 The best way to embed tweets in your SvelteKit app, supporting both SSR and static prerendering modes.
 
@@ -64,4 +64,4 @@ npm install sveltekit-tweet
 - [ ] Drop external dependencies.
 - [ ] Add support for Quoted Tweets.
 - [ ] Add TweetNotFound component.
-- [ ] Add easy way for mdsvex integration.
+- [X] Add easy way for mdsvex integration.
