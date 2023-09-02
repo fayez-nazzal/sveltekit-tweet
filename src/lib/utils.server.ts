@@ -79,19 +79,19 @@ export const getTweet = async (
 	throw new Error(`Failed to fetch tweet ${id}: ${data?.errors?.[0]?.message ?? res.statusText}`);
 };
 
-export const renderTweets = async (content: string, fetchedTweets?: any[]) => {
+export const renderTweets = async (content: string, fetchedTweets?: ITweet[]) => {
 	// find all data-tweet-id fields
 	const tweetIds = content.match(/data-tweet="(\d+)"/g)?.map((s: string) => s.match(/\d+/)?.[0]);
 
 	console.log(`Found tweetIds ${JSON.stringify(tweetIds)}`);
 
 	if (tweetIds && tweetIds.length > 0) {
-		let tweets = [];
+		let tweets: ITweet[] = [];
 
 		for (const id of tweetIds) {
 			if (!id) {
 				console.info(`Found tweetId as ${id}`);
-				return;
+				continue;
 			}
 
 			console.info(`Fetching tweet ${id}`);
@@ -101,6 +101,8 @@ export const renderTweets = async (content: string, fetchedTweets?: any[]) => {
 				console.info(`fetching tweet ${id} returned falsy value ${tweet}`);
 			}
 
+			if (!tweet) continue;
+
 			tweets.push(tweet);
 		}
 
@@ -108,15 +110,20 @@ export const renderTweets = async (content: string, fetchedTweets?: any[]) => {
 			tweets = fetchedTweets as ITweet[];
 		}
 
-		const renderedTweets = tweets.map((tweet) => (Tweet as any).render({ tweet })).filter(Boolean);
-
-		const css = renderedTweets[0].css;
+		if (!tweets.length) throw new Error(`No tweets found!`);
 
 		// replace all data-tweet-id fields with rendered tweets
-		content = content.replace(/<div data-tweet="(\d+)">/g, () => renderedTweets.shift().html ?? '');
+		content = content.replace(/<div data-tweet="(\d+)">/g, (_, p1) => {
+			const tweet = tweets.find((tweet) => tweet.id_str === p1);
+			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+			// @ts-expect-error
+			const renderedTweet = Tweet.render({ tweet });
+			const css = renderedTweet[0].css;
 
-		// add tweet css to content
-		content = `${content}<style>${css.code}</style>`;
+			content = `${content}<style>${css.code}</style>`;
+
+			return renderedTweet.html;
+		});
 	}
 
 	return content;
