@@ -114,7 +114,7 @@ export const renderTweets = async (content: string, fetchedTweets?: ITweet[]) =>
 			const tweet = tweets.find((tweet) => tweet.id_str === p1);
 			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 			// @ts-expect-error
-			const renderedTweet = await Tweet.render({ tweet });
+			const renderedTweet = Tweet.render({ tweet });
 			const css = renderedTweet.css;
 
 			content = `${content}<style>${css.code}</style>`;
