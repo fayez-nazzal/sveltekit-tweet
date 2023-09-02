@@ -109,18 +109,22 @@ export const renderTweets = async (content: string, fetchedTweets?: ITweet[]) =>
 
 		if (!tweets.length) throw new Error(`No tweets found!`);
 
+		let lastCSS: any = undefined;
+
 		// replace all data-tweet-id fields with rendered tweets
 		content = content.replace(/<div data-tweet="(\d+)">/g, (_, p1) => {
 			const tweet = tweets.find((tweet) => tweet.id_str === p1);
 			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 			// @ts-expect-error
 			const renderedTweet = Tweet.render({ tweet });
-			const css = renderedTweet.css;
-
-			content = `${content}<style>${css.code}</style>`;
+			lastCSS = renderedTweet.css;
 
 			return renderedTweet.html;
 		});
+
+		if (lastCSS !== undefined) {
+			content = `${content}<style>${lastCSS.code}</style>`;
+		}
 	}
 
 	return content;
