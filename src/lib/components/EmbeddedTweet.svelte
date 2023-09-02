@@ -14,6 +14,7 @@
 	export let tweet: ITweet;
 	export let components: TwitterComponents = {};
 
+	console.info(`using tweet ${JSON.stringify(tweet)}`);
 	let enrichedTweet = enrichTweet(tweet);
 </script>
 

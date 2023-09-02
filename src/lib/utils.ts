@@ -164,23 +164,30 @@ const fixRange = (tweet: ITweetBase, entities: TEntityWithType[]) => {
 /**
  * Enriches a tweet with additional data used to more easily use the tweet in a UI.
  */
-export const enrichTweet = (tweet: ITweet): TEnrichedTweet => ({
-	...tweet,
-	url: getTweetUrl(tweet),
-	user: {
-		...tweet.user,
-		url: getUserUrl(tweet),
-		follow_url: getFollowUrl(tweet)
-	},
-	like_url: getLikeUrl(tweet),
-	reply_url: getReplyUrl(tweet),
-	in_reply_to_url: tweet.in_reply_to_screen_name ? getInReplyToUrl(tweet) : undefined,
-	entities: getEntities(tweet),
-	quoted_tweet: tweet.quoted_tweet
-		? {
-				...tweet.quoted_tweet,
-				url: getTweetUrl(tweet.quoted_tweet),
-				entities: getEntities(tweet.quoted_tweet)
-		  }
-		: undefined
-});
+export const enrichTweet = (tweet: ITweet): TEnrichedTweet => {
+	if (!tweet)
+		throw new Error(
+			`Tweet not defined, please use a valid tweet, the tweet you used is JSON.stringify(tweet)`
+		);
+
+	return {
+		...tweet,
+		url: getTweetUrl(tweet),
+		user: {
+			...tweet.user,
+			url: getUserUrl(tweet),
+			follow_url: getFollowUrl(tweet)
+		},
+		like_url: getLikeUrl(tweet),
+		reply_url: getReplyUrl(tweet),
+		in_reply_to_url: tweet.in_reply_to_screen_name ? getInReplyToUrl(tweet) : undefined,
+		entities: getEntities(tweet),
+		quoted_tweet: tweet.quoted_tweet
+			? {
+					...tweet.quoted_tweet,
+					url: getTweetUrl(tweet.quoted_tweet),
+					entities: getEntities(tweet.quoted_tweet)
+			  }
+			: undefined
+	};
+};
