@@ -15,22 +15,30 @@
 	export let components: TwitterComponents = {};
 
 	console.info(`using tweet ${JSON.stringify(tweet)}`);
-	let enrichedTweet = enrichTweet(tweet);
+
+	let enrichedTweet: any;
+	try {
+		enrichedTweet = enrichTweet(tweet);
+	} catch (e) {
+		console.lot(e);
+	}
 </script>
 
-<TweetContainer>
-	<TweetHeader tweet={enrichedTweet} {components} />
-	{#if enrichedTweet.in_reply_to_status_id_str}
-		<TweetInReplyTo tweet={enrichedTweet} />
-	{/if}
-	<TweetBody tweet={enrichedTweet} />
-	{#if enrichedTweet.mediaDetails?.length}
-		<TweetMedia tweet={enrichedTweet} {components} />
-	{/if}
-	<!-- {#if enrichedTweet.quoted_tweet}
+{#if enrichedTweet}
+	<TweetContainer>
+		<TweetHeader tweet={enrichedTweet} {components} />
+		{#if enrichedTweet.in_reply_to_status_id_str}
+			<TweetInReplyTo tweet={enrichedTweet} />
+		{/if}
+		<TweetBody tweet={enrichedTweet} />
+		{#if enrichedTweet.mediaDetails?.length}
+			<TweetMedia tweet={enrichedTweet} {components} />
+		{/if}
+		<!-- {#if enrichedTweet.quoted_tweet}
       <QuotedTweet {enrichedTweet.quoted_tweet} />
     {/if} -->
-	<TweetInfo tweet={enrichedTweet} />
-	<TweetActions tweet={enrichedTweet} />
-	<TweetReplies tweet={enrichedTweet} />
-</TweetContainer>
+		<TweetInfo tweet={enrichedTweet} />
+		<TweetActions tweet={enrichedTweet} />
+		<TweetReplies tweet={enrichedTweet} />
+	</TweetContainer>
+{/if}
