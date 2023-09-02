@@ -1,6 +1,6 @@
 {
 	"name": "sveltekit-tweet",
-	"version": "0.0.15",
+	"version": "0.0.16",
 	"description": "The best way to embed tweets in your SvelteKit app, supporting both SSR and static prerendering modes.",
 	"author": "Fayez Nazzal <contact@fayez.io> (https://fayez.io)",
 	"license": "MIT",
