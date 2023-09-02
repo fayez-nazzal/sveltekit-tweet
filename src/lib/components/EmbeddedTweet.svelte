@@ -20,7 +20,7 @@
 	try {
 		enrichedTweet = enrichTweet(tweet);
 	} catch (e) {
-		console.lot(e);
+		console.log(e);
 	}
 </script>
 

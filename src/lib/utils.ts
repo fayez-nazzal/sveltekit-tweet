@@ -167,7 +167,7 @@ const fixRange = (tweet: ITweetBase, entities: TEntityWithType[]) => {
 export const enrichTweet = (tweet: ITweet): TEnrichedTweet => {
 	if (!tweet)
 		throw new Error(
-			`Tweet not defined, please use a valid tweet, the tweet you used is JSON.stringify(tweet)`
+			`Tweet not defined, please use a valid tweet, the tweet you used is ${JSON.stringify(tweet)}`
 		);
 
 	return {

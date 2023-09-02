@@ -66,6 +66,8 @@ export const renderTweets = async (content: string) => {
 	// find all data-tweet-id fields
 	const tweetIds = content.match(/data-tweet="(\d+)"/g)?.map((s: string) => s.match(/\d+/)?.[0]);
 
+	console.log(`Found tweetIds ${JSON.stringify(tweetIds)}`);
+
 	if (tweetIds && tweetIds.length > 0) {
 		const tweetsPromises = (tweetIds?.filter(Boolean) as string[])
 			.map((id: string) => getTweet(id))
