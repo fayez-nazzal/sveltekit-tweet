@@ -86,11 +86,23 @@ export const renderTweets = async (content: string, fetchedTweets?: any[]) => {
 	console.log(`Found tweetIds ${JSON.stringify(tweetIds)}`);
 
 	if (tweetIds && tweetIds.length > 0) {
-		const tweetsPromises = (tweetIds?.filter(Boolean) as string[])
-			.map((id: string) => getTweet(id))
-			.filter(Boolean);
+		let tweets = [];
 
-		let tweets = (await Promise.all(tweetsPromises ?? [])).filter(Boolean) as ITweet[];
+		for (const id of tweetIds) {
+			if (!id) {
+				console.info(`Found tweetId as ${id}`);
+				return;
+			}
+
+			console.info(`Fetching tweet ${id}`);
+			const tweet = await getTweet(id);
+
+			if (!tweet) {
+				console.info(`fetching tweet ${id} returned falsy value ${tweet}`);
+			}
+
+			tweets.push(tweet);
+		}
 
 		if (!tweets.length) {
 			tweets = fetchedTweets as ITweet[];
