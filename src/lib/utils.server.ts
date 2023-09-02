@@ -86,29 +86,26 @@ export const renderTweets = async (content: string, fetchedTweets?: ITweet[]) =>
 	console.log(`Found tweetIds ${JSON.stringify(tweetIds)}`);
 
 	if (tweetIds && tweetIds.length > 0) {
-		let tweets: ITweet[] = [];
+		const tweets: ITweet[] = fetchedTweets || [];
 
-		for (const id of tweetIds) {
-			if (!id) {
-				console.info(`Found tweetId as ${id}`);
-				continue;
+		if (!tweets.length)
+			for (const id of tweetIds) {
+				if (!id) {
+					console.info(`Found tweetId as ${id}`);
+					continue;
+				}
+
+				console.info(`Fetching tweet ${id}`);
+				const tweet = await getTweet(id);
+
+				if (!tweet) {
+					console.info(`fetching tweet ${id} returned falsy value ${tweet}`);
+				}
+
+				if (!tweet) continue;
+
+				tweets.push(tweet);
 			}
-
-			console.info(`Fetching tweet ${id}`);
-			const tweet = await getTweet(id);
-
-			if (!tweet) {
-				console.info(`fetching tweet ${id} returned falsy value ${tweet}`);
-			}
-
-			if (!tweet) continue;
-
-			tweets.push(tweet);
-		}
-
-		if (!tweets.length) {
-			tweets = fetchedTweets as ITweet[];
-		}
 
 		if (!tweets.length) throw new Error(`No tweets found!`);
 
@@ -117,8 +114,8 @@ export const renderTweets = async (content: string, fetchedTweets?: ITweet[]) =>
 			const tweet = tweets.find((tweet) => tweet.id_str === p1);
 			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 			// @ts-expect-error
-			const renderedTweet = Tweet.render({ tweet });
-			const css = renderedTweet[0].css;
+			const renderedTweet = await Tweet.render({ tweet });
+			const css = renderedTweet.css;
 
 			content = `${content}<style>${css.code}</style>`;
 
