@@ -23,11 +23,14 @@ export const getTweet = async (
 	id: string,
 	fetchOptions?: RequestInit
 ): Promise<ITweet | undefined> => {
+	console.info(`Getting tweet with id ${id}`);
+
 	if (id.length > 40 || !TWEET_REGEX.test(id)) {
 		throw new Error(`Invalid tweet id: ${id}`);
 	}
 
 	const url = new URL(`${SYNDICATION_URL}/tweet-result`);
+	console.info(`URL: ${url}`);
 
 	url.searchParams.set('id', id);
 	url.searchParams.set('lang', 'en');
@@ -52,17 +55,31 @@ export const getTweet = async (
 	);
 	url.searchParams.set('token', getToken(id));
 
+	console.info(`URL with params: ${url}`);
+
 	const res = await fetch(url.toString(), fetchOptions);
-	const isJson = res.headers.get('content-type')?.includes('application/json');
+
+	const contentType = res?.headers.get('content-type');
+	const isJson = contentType?.includes('application/json');
 	const data = isJson ? await res.json() : undefined;
 
+	console.info(`content type: ${contentType}`);
+	console.info(`res data ${JSON.stringify(data)}`);
+
+	if (!isJson) {
+		console.info(`res text: ${await res?.text()}`);
+	}
+
 	if (res.ok) return data;
-	if (res.status === 404) return;
+	if (res.status === 404) {
+		console.error(`Getting tweet ${id} returned a status of ${404}`);
+		return;
+	}
 
 	throw new Error(`Failed to fetch tweet ${id}: ${data?.errors?.[0]?.message ?? res.statusText}`);
 };
 
-export const renderTweets = async (content: string) => {
+export const renderTweets = async (content: string, fetchedTweets?: any[]) => {
 	// find all data-tweet-id fields
 	const tweetIds = content.match(/data-tweet="(\d+)"/g)?.map((s: string) => s.match(/\d+/)?.[0]);
 
@@ -73,8 +90,13 @@ export const renderTweets = async (content: string) => {
 			.map((id: string) => getTweet(id))
 			.filter(Boolean);
 
-		const tweets = (await Promise.all(tweetsPromises ?? [])) as ITweet[];
-		const renderedTweets = tweets.map((tweet) => (Tweet as any).render({ tweet }));
+		let tweets = (await Promise.all(tweetsPromises ?? [])).filter(Boolean) as ITweet[];
+
+		if (!tweets.length) {
+			tweets = fetchedTweets as ITweet[];
+		}
+
+		const renderedTweets = tweets.map((tweet) => (Tweet as any).render({ tweet })).filter(Boolean);
 
 		const css = renderedTweets[0].css;
 
