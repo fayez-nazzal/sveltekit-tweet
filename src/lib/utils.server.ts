@@ -83,8 +83,6 @@ export const renderTweets = async (content: string, fetchedTweets?: ITweet[]) =>
 	// find all data-tweet-id fields
 	const tweetIds = content.match(/data-tweet="(\d+)"/g)?.map((s: string) => s.match(/\d+/)?.[0]);
 
-	console.log(`Found tweetIds ${JSON.stringify(tweetIds)}`);
-
 	if (tweetIds && tweetIds.length > 0) {
 		const tweets: ITweet[] = fetchedTweets || [];
 
