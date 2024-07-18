@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { enrichTweet } from '../utils.js';
+	import { building, dev } from '$app/environment';
 	import TweetContainer from './TweetContainer.svelte';
 	import TweetHeader from './TweetHeader.svelte';
 	import TweetInReplyTo from './TweetInReply.svelte';
@@ -14,7 +15,7 @@
 	export let tweet: ITweet;
 	export let components: TwitterComponents = {};
 
-	console.info(`using tweet ${JSON.stringify(tweet)}`);
+	if (dev || building) console.info(`using tweet ${JSON.stringify(tweet)}`);
 
 	let enrichedTweet: any;
 	try {
