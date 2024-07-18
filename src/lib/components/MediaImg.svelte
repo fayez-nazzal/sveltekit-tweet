@@ -5,4 +5,4 @@
     export let draggable: boolean = false;
 </script>
 
-<img src={src} alt={alt} class={className} draggable={draggable} />
+<img src={src} alt={alt} class={className} draggable={draggable} loading="lazy" />

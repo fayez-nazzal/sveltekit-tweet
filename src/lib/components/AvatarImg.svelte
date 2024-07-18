@@ -6,4 +6,4 @@
 	export let style = '';
 </script>
 
-<img {src} {alt} {width} {height} {style} />
+<img {src} {alt} {width} {height} {style} loading="lazy" />

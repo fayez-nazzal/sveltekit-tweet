@@ -50,7 +50,7 @@
 					rel="noopener noreferrer"
 				>
 					<div class="skeleton" style={getSkeletonStyle(media, length)} />
-					<Img src={getMediaUrl(media, 'small')} alt={media.ext_alt_text || 'Image'} draggable />
+					<Img src={getMediaUrl(media, 'small')} alt={media.ext_alt_text || 'Image'} draggable loading="lazy"/>
 				</a>
 			{:else}
 				<div class="mediaContainer">
