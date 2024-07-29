@@ -1,8 +1,7 @@
 {
-	"name": "sveltekit-tweet",
-	"version": "0.0.18",
+	"name": "@ryoppippi/sveltekit-tweet",
+	"version": "0.0.0",
 	"description": "The best way to embed tweets in your SvelteKit app, supporting both SSR and static prerendering modes.",
-	"author": "Fayez Nazzal <contact@fayez.io> (https://fayez.io)",
 	"license": "MIT",
 	"scripts": {
 		"dev": "vite dev",
@@ -32,7 +31,7 @@
 		"!dist/**/*.spec.*"
 	],
 	"peerDependencies": {
-		"svelte": "^4.0.0"
+		"svelte": "^5.0.0"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.0.0",
@@ -58,13 +57,5 @@
 	"dependencies": {
 		"date-fns": "^2.30.0",
 		"scn": "^1.0.19"
-	},
-	"homepage": "https://github.com/fayez-nazzal/sveltekit-tweet",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/fayez-nazzal/sveltekit-tweet"
-	},
-	"bugs": {
-		"url": "https://github.com/fayez-nazzal/sveltekit-tweet/issues"
 	}
 }
