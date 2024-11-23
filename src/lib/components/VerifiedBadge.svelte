@@ -2,14 +2,14 @@
 	import Verified from './icons/Verified.svelte';
 	import VerifiedBusiness from './icons/VerifiedBusiness.svelte';
 	import VerifiedGovernment from './icons/VerifiedGovernment.svelte';
-
+	
 	export let user;
 	export let className = '';
-
+	
 	let verified = user.verified || user.is_blue_verified || user.verified_type;
 	let iconComponent = Verified;
 	let iconClassName = 'verifiedBlue';
-
+	
 	if (verified) {
 		if (!user.is_blue_verified) {
 			iconClassName = 'verifiedOld';
@@ -23,10 +23,11 @@
 				iconComponent = VerifiedBusiness;
 				iconClassName = '';
 				break;
+			}
 		}
-	}
-</script>
+	</script>
 
+<svelte:options css="injected" />
 {#if verified}
 	<div class="authorVerified {iconClassName}">
 		<svelte:component this={iconComponent} />

@@ -6,4 +6,5 @@
 	export let style = '';
 </script>
 
+<svelte:options css="injected" />
 <img {src} {alt} {width} {height} {style} />

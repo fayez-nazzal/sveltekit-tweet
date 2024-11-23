@@ -2,6 +2,7 @@
 	export let href: string;
 </script>
 
+<svelte:options css="injected" />
 <a {href} class="root" target="_blank" rel="noopener noreferrer">
 	<slot />
 </a>

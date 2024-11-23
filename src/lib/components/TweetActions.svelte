@@ -2,11 +2,12 @@
 	import { formatNumber } from '../utils.js';
 	import type { TEnrichedTweet } from '../types.js';
 	import TweetActionsCopy from './TweetActionsCopy.svelte';
-
+	
 	export let tweet: TEnrichedTweet;
 	let favoriteCount = formatNumber(tweet.favorite_count);
 </script>
 
+<svelte:options css="injected" />
 <div class="actions">
 	<a
 		class="like"

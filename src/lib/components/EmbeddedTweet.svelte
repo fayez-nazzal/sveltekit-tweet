@@ -25,6 +25,7 @@
 	}
 </script>
 
+<svelte:options css="injected" />
 {#if enrichedTweet}
 	<TweetContainer>
 		<TweetHeader tweet={enrichedTweet} {components} />

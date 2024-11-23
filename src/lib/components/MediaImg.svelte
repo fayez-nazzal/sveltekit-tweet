@@ -5,4 +5,5 @@
     export let draggable: boolean = false;
 </script>
 
+<svelte:options css="injected" />
 <img src={src} alt={alt} class={className} draggable={draggable} />

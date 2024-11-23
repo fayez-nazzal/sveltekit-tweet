@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import type { TEnrichedTweet } from '../types.js';
-
+	
 	export let tweet: TEnrichedTweet;
-
+	
 	let copied = false;
 	let copyAllText = false;
 
@@ -36,6 +36,7 @@
 	}
 </script>
 
+<svelte:options css="injected" />
 <button type="button" class="copy" aria-label="Copy link" on:click={handleCopy}>
 	<div class="copyIconWrapper">
 		{#if copied}

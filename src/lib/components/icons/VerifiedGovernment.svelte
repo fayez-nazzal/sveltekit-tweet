@@ -1,3 +1,4 @@
+<svelte:options css="injected" />
 <svg viewBox="0 0 22 22" aria-label="Verified account" role="img" class="verified">
 	<g>
 		<linearGradient

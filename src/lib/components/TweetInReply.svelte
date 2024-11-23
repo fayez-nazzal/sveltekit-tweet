@@ -1,9 +1,10 @@
 <script lang="ts">
 	import type { TEnrichedTweet } from '../types.js';
-
+	
 	export let tweet: TEnrichedTweet;
 </script>
 
+<svelte:options css="injected" />
 <a href={tweet.in_reply_to_url} class="root" target="_blank" rel="noopener noreferrer">
 	Replying to @{tweet.in_reply_to_screen_name}
 </a>

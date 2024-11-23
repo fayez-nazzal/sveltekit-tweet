@@ -115,7 +115,7 @@ export const renderTweets = async (content: string, fetchedTweets?: ITweet[]) =>
 			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 			const renderedTweet = render(Tweet, { props: { tweet }  });
 
-			return renderedTweet.body;
+			return renderedTweet.head + renderedTweet.body;
 		});
 	}
 

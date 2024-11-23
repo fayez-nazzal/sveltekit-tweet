@@ -10,7 +10,7 @@
 
 	export let tweet: TEnrichedTweet | TEnrichedQuotedTweet;
 	export let media: IMediaAnimatedGif | IMediaVideo;
-
+	
 	let playButton = true;
 	let isPlaying = false;
 	let ended = false;
@@ -26,7 +26,7 @@
 		if (!isPlaying) isPlaying = true;
 		if (ended) ended = false;
 	}
-
+	
 	function handlePause(video: HTMLMediaElement) {
 		if (timeout) clearTimeout(timeout);
 		timeout = setTimeout(() => {
@@ -47,6 +47,7 @@
 	}
 </script>
 
+<svelte:options css="injected" />
 <video
 	class="image"
 	poster={getMediaUrl(media, 'small')}

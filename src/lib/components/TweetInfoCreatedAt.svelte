@@ -2,12 +2,12 @@
 	import { onMount } from 'svelte';
 	import type { TEnrichedTweet } from '../types.js';
 	import { format } from 'date-fns';
-
+	
 	export let tweet: TEnrichedTweet;
 
 	let mounted = false;
 	let createdAt: Date | null = null;
-
+	
 	onMount(() => {
 		mounted = true;
 		if (typeof window !== 'undefined') {
@@ -16,6 +16,7 @@
 	});
 </script>
 
+<svelte:options css="injected" />
 {#if createdAt}
 	<a
 		class="root"

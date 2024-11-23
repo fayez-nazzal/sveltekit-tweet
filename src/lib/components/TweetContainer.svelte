@@ -1,11 +1,12 @@
 <script lang="ts">
 	import scn from 'scn';
 	import '../theme.css';
-
+	
 	export let className: string = '';
 	let computedClass = scn('react-tweet-theme', 'root', className);
 </script>
 
+<svelte:options css="injected" />
 <div class={computedClass}>
 	<article class="article">
 		<slot />

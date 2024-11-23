@@ -4,11 +4,11 @@
 	import TweetMediaVideo from './TweetMediaVideo.svelte';
 	import MediaImg from './MediaImg.svelte';
 	import { getMediaUrl } from '../utils.js';
-
+	
 	export let tweet: TEnrichedTweet | TEnrichedQuotedTweet;
 	export let components: TwitterComponents | undefined;
 	export let quoted: boolean = false;
-
+	
 	const getSkeletonStyle = (media: IMediaDetails, itemCount: number) => {
 		let paddingBottom = 56.25; // default of 16x9
 
@@ -32,6 +32,7 @@
 	const mediaDetails = tweet.mediaDetails ?? [];
 </script>
 
+<svelte:options css="injected" />
 <div class={['root', !quoted && 'rounded'].join(' ')}>
 	<div
 		class={[

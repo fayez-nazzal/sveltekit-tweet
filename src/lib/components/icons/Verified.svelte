@@ -1,3 +1,4 @@
+<svelte:options css="injected" />
 <svg viewBox="0 0 24 24" aria-label="Verified account" role="img" class="verified">
 	<g>
 		<path

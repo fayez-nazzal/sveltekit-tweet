@@ -1,10 +1,11 @@
 <script lang="ts">
 	import type { TEnrichedTweet } from '../types.js';
 	import TweetInfoCreatedAt from './TweetInfoCreatedAt.svelte';
-
+	
 	export let tweet: TEnrichedTweet;
 </script>
 
+<svelte:options css="injected" />
 <div class="info">
 	<TweetInfoCreatedAt {tweet} />
 	<a

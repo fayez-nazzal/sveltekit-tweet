@@ -2,7 +2,7 @@
 	import AvatarImg from './AvatarImg.svelte';
 	import type { TEnrichedTweet, TwitterComponents } from '../types.js';
 	import VerifiedBadge from './VerifiedBadge.svelte';
-
+	
 	export let tweet: TEnrichedTweet;
 	export let components: TwitterComponents;
 
@@ -10,6 +10,7 @@
 	const { user } = tweet;
 </script>
 
+<svelte:options css="injected" />
 <div class="header">
 	<a href={tweet.url} class="avatar" target="_blank" rel="noopener noreferrer">
 		<div
