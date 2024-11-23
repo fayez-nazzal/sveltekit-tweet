@@ -6,4 +6,5 @@
 	export let tweet: ITweet;
 </script>
 
+<svelte:options css="injected" />
 <EmbeddedTweet {tweet} {components} />
