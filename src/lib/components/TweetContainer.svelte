@@ -16,7 +16,7 @@
 	.root {
 		width: 100%;
 		min-width: 250px;
-		max-width: 550px;
+		max-width: 640px;
 		overflow: hidden;
 		/* Base font styles */
 		color: var(--tweet-font-color);
