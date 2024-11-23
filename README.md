@@ -48,7 +48,9 @@ npm install sveltekit-tweet
     	import Tweet from 'sveltekit-tweet/server';
     	import type { PageData } from './$types';
 
-    	export let data: PageData;
+    	let { data }: {
+			data: PageData;
+		} = $props();
     </script>
 
     {#if data.tweet}

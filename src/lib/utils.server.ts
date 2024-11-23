@@ -9,6 +9,7 @@
 import { TWEET_REGEX } from './constants.server.js';
 import Tweet from './components/Tweet.svelte';
 import type { ITweet } from './types.js';
+import { render } from 'svelte/server';
 
 const SYNDICATION_URL = 'https://cdn.syndication.twimg.com';
 
@@ -107,22 +108,15 @@ export const renderTweets = async (content: string, fetchedTweets?: ITweet[]) =>
 
 		if (!tweets.length) throw new Error(`No tweets found!`);
 
-		let lastCSS: any = undefined;
 
 		// replace all data-tweet-id fields with rendered tweets
 		content = content.replace(/<div data-tweet="(\d+)">/g, (_, p1) => {
 			const tweet = tweets.find((tweet) => tweet.id_str === p1);
 			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-			// @ts-expect-error
-			const renderedTweet = Tweet.render({ tweet });
-			lastCSS = renderedTweet.css;
+			const renderedTweet = render(Tweet, { props: { tweet }  });
 
-			return renderedTweet.html;
+			return renderedTweet.body;
 		});
-
-		if (lastCSS !== undefined) {
-			content = `${content}<style>${lastCSS.code}</style>`;
-		}
 	}
 
 	return content;
