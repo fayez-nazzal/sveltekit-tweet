@@ -1,9 +1,10 @@
 {
 	"name": "sveltekit-tweet",
-	"version": "0.0.18",
+	"version": "0.0.19",
 	"description": "The best way to embed tweets in your SvelteKit app, supporting both SSR and static prerendering modes.",
 	"author": "Fayez Nazzal <contact@fayez.io> (https://fayez.io)",
 	"license": "MIT",
+	"packageManager": "pnpm@9.12.1",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
@@ -35,9 +36,9 @@
 		"svelte": "^4.0.0"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^2.0.0",
-		"@sveltejs/kit": "^1.20.4",
-		"@sveltejs/package": "^2.0.0",
+		"@sveltejs/adapter-auto": "^3.3.1",
+		"@sveltejs/kit": "^2.8.2",
+		"@sveltejs/package": "^2.3.7",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
 		"@typescript-eslint/parser": "^5.45.0",
 		"eslint": "^8.28.0",
@@ -46,11 +47,12 @@
 		"prettier": "^2.8.0",
 		"prettier-plugin-svelte": "^2.10.1",
 		"publint": "^0.1.9",
-		"svelte": "^4.0.5",
-		"svelte-check": "^3.4.3",
+		"svelte": "^5.2.7",
+		"svelte-check": "^4.1.0",
 		"tslib": "^2.4.1",
 		"typescript": "^5.0.0",
-		"vite": "^4.4.2"
+		"vite": "^5.4.11",
+		"@sveltejs/vite-plugin-svelte": "^4.0.1"
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",
